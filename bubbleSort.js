@@ -1,4 +1,4 @@
-let randomArray = [4,5,2,1,6,7,3,8,10,9];
+let randomArray = [10,4,9,5,2,1,6,7,3,8];
 
 let bubbleSort = function(array){
   let comparedNumber;
@@ -7,27 +7,35 @@ let bubbleSort = function(array){
   let willLoop = true;
   while(willLoop){
     willLoop = false;
-    comparedNumber = array[0];
-    for (var i = 1; i < array.length; i++) {
+    let loopInterval = setInterval(function(){
+      comparedNumber = array[0];
+      for (var i = 1; i < array.length; i++) {
        if(comparedNumber - array[i] > 0) {
         array[i-1] = array[i];
         array[i] = comparedNumber;
+        let documentDivs = document.querySelectorAll('.arrayDiv');
+        for(let i = 0; i < 10; i++){
+          documentDivs[i].style.height = (array[i] * 20) + 'px';
+          documentDivs[i].innerHTML = array[i];
+        }
         willLoop = true;
         swapCount++;
        } else {
         comparedNumber = array[i];
        }
-      console.log(array);
-      console.log(swapCount);
-      let documentDivs = document.querySelectorAll('.arrayDiv');
-      for(let i = 0; i < 10; i++){
-        documentDivs[i].style.height = (array[i] * 20) + 'px';
-        documentDivs[i].innerHTML = array[i];
-      }
+        console.log(array);
+        console.log(swapCount);
+
       pass++;
-    }
+      }
+      if(willLoop === false){
+        clearInterval(loopInterval);
+      }
     console.log('array after loop '+ pass + ' ' + array);
+    }, 1000);
+
   }
+
   return array;
 };
 
