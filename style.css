@@ -1,3 +1,5 @@
-#container{
-  display: inline-block;
+.arrayDiv{
+  display:inline-block;
+  width: 50px;
+  border-style: solid;
 }
