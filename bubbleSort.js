@@ -39,9 +39,38 @@ let bubbleSort = function(array){
   return array;
 };
 
+let quickSort = function(arr){
+  let pivot = arr[0];
+  let rightArray = [];
+  let leftArray = [];
+
+  if(arr.length <= 1 || arr === undefined){
+    return arr;
+  } else {
+
+    for (let i = 1; i < arr.length; i++) {
+      if(arr[i] < pivot){
+        leftArray.push(arr[i]);
+      } else {
+        rightArray.push(arr[i]);
+      }
+    }
+
+    console.log('left: ' + leftArray);
+    console.log('right: ' + rightArray);
+  }
+let newArr = quickSort(leftArray).concat(pivot, quickSort(rightArray));
+let documentDivs = document.querySelectorAll('.arrayDiv');
+  for(let i = 0; i < newArr.length; i++){
+    documentDivs[i].style.height = (newArr[i] * 20) + 'px';
+    documentDivs[i].innerHTML = newArr[i];
+  }
+  return newArr;
+};
 
 let generateDivs = function(){
   let container = document.getElementById('container');
+
   for(let i = 0; i < 10; i++){
     //let randomNumber = Math.floor(Math.random() * 10) ;
     let createdItem = document.createElement('div');
@@ -55,8 +84,8 @@ let generateDivs = function(){
 
 let sort = function(){
   let divList = document.querySelectorAll('.arrayDiv');
-  bubbleSort(randomArray);
-  console.log(divList);
+  let newArray = quickSort(randomArray);
+  console.log(newArray);
 };
 
 generateDivs();
